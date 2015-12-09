@@ -14,7 +14,8 @@ def insert_something(someList,someThing,divisor):
 	return someList
 				
 new_list = create_list(100)
-print insert_something(new_list, 'fizz', 3)
-print insert_something(new_list, 'buzz', 5)
-print insert_something(new_list, 'fizzbuzz', 15)
-			
+insert_something(new_list, 'fizz', 3)
+insert_something(new_list, 'buzz', 5)
+insert_something(new_list, 'fizzbuzz', 15)
+
+print new_list			
