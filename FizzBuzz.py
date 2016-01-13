@@ -1,27 +1,32 @@
-from types import ListType, IntType
+"""Print all integers from 1 to 100. However, for multiples of three,
+print 'Fizz' instead of the number, for multiples of five, print
+'Buzz', and for numbers which are multiples of both three and five,
+print 'FizzBuzz'.
+"""
+def is_appropriate(number):
+    """Return True if the given number is an integer between 0 and
+    101. Otherwise, return False.
+    """
+    return isinstance(number, int) and 0 < number <= 100
 
-def create_list(size):
-    #takes one positive int 'size' and returns a list of all integers 0 to 'size'
-    assert isinstance(size, IntType)
-    some_list = []
-    for i in range(0, size+1):
-        some_list.append(i)
-    return some_list
+def determine_element(element):
+    """Determine whether the element should be named, 'Fizz', 'Buzz',
+    'FizzBuzz', or itself, make the change to the element(if
+    applicable), and return it.
+    """
+    assert is_appropriate(element)
+    if element % 15 == 0:
+        return 'FizzBuzz'
+    elif element % 3 == 0:
+        return 'Fizz'
+    elif element % 5 == 0:
+        return 'Buzz'
+    return element
 
-def insert_something(some_list, some_thing, divisor):
-    #takes a list 'someList', a desired variable to be inserted into the list 'someThing', and an
-    #int 'divisor'. 'someThing' gets inserted into 'someList' at every element where the element's
-    #index is divisible by 'divisor'
-    assert isinstance(some_list, ListType)
-    assert isinstance(divisor, IntType)
-    for index, content in enumerate(some_list):
-        if index%divisor == 0 and index != 0:
-            some_list[index] = some_thing
-    return some_list
+def format_element(element):
+    """Right justify the given element."""
+    return "{0:>8s}".format(str(element))
 
-new_list = create_list(100)
-insert_something(new_list, 'fizz', 3)
-insert_something(new_list, 'buzz', 5)
-insert_something(new_list, 'fizzbuzz', 15)
-
-print new_list
+for integer in range(1, 101):
+    ELEMENT = determine_element(integer)
+    print format_element(ELEMENT)
