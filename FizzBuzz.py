@@ -7,16 +7,14 @@ def is_appropriate(number):
     """Return True if the given number is an integer between 0 and
     101. Otherwise, return False.
     """
-    if isinstance(number, int) and 0 < number <= 100:
-        return True
-    return False
+    return isinstance(number, int) and 0 < number <= 100
 
 def determine_element(element):
     """Determine whether the element should be named, 'Fizz', 'Buzz',
     'FizzBuzz', or itself, make the change to the element(if
     applicable), and return it.
     """
-    assert is_appropriate(element) is True
+    assert is_appropriate(element)
     if element % 15 == 0:
         return 'FizzBuzz'
     elif element % 3 == 0:
@@ -25,14 +23,10 @@ def determine_element(element):
         return 'Buzz'
     return element
 
-def format_element(number, element):
-    """Arrange the given number and element to fit the following
-    format: {ddd  :  element} where the number 'ddd' is given a
-    right-side alignment.
-    """
-    assert is_appropriate(number) is True
-    return "{0:3d}  :  ".format(number) + str(element)
+def format_element(element):
+    """Right justify the given element."""
+    return "{0:>8s}".format(str(element))
 
 for integer in range(1, 101):
     ELEMENT = determine_element(integer)
-    print format_element(integer, ELEMENT)
+    print format_element(ELEMENT)
